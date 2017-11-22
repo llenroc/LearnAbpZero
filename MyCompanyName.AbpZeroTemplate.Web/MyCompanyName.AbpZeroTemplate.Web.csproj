@@ -822,6 +822,8 @@
     <Content Include="Common\Styles\core.min.css">
       <DependentUpon>core.css</DependentUpon>
     </Content>
+    <Content Include="Content\cpts\css\style.css" />
+    <Content Include="Content\cpts\images\avtar.png" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\fonts-open-sans.css" />

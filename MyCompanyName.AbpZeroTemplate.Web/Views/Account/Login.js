@@ -1,53 +1,36 @@
-﻿var CurrentPage = function () {
+﻿(function () {
 
-    var handleLogin = function () {
-
-        var $loginForm = $('.login-form');
-
-        $loginForm.validate({
-            rules: {
-                username: {
-                    required: true
-                },
-                password: {
-                    required: true
-                }
-            }
-        });
+    $(function () {
+        var $loginForm = $('#LoginForm');
 
         $loginForm.submit(function (e) {
             e.preventDefault();
 
-            if (!$('.login-form').valid()) {
+            if (!$loginForm.valid()) {
                 return;
             }
 
             abp.ui.setBusy(
-                null,
+                $('#LoginArea'),
+
                 abp.ajax({
-                    contentType: app.consts.contentTypes.formUrlencoded,
+                    contentType: 'application/x-www-form-urlencoded',
                     url: $loginForm.attr('action'),
                     data: $loginForm.serialize()
                 })
             );
         });
 
-        $('a.social-login-icon').click(function() {
+        $('a.social-login-link').click(function () {
             var $a = $(this);
             var $form = $a.closest('form');
             $form.find('input[name=provider]').val($a.attr('data-provider'));
             $form.submit();
         });
 
-        $loginForm.find('input[name=returnUrlHash]').val(location.hash);
+        $('#ReturnUrlHash').val(location.hash);
 
-        $('input[type=text]').first().focus();
-    }
+        $('#LoginForm input:first-child').focus();
+    });
 
-    return {
-        init: function () {
-            handleLogin();
-        }
-    };
-
-}();
+})();
